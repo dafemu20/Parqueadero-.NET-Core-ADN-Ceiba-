@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Parqueadero.infrastructure.adapter.repository;
+using Parqueadero.domain.model;
 
 namespace Parqueadero
 {
@@ -20,5 +22,6 @@ namespace Parqueadero
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
+
     }
 }
