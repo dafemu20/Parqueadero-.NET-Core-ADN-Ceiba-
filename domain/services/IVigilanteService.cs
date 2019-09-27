@@ -6,5 +6,8 @@ namespace Parqueadero.domain.services
     {
         void GenerarTiquete(VehiculoDto vehiculoDto);
 
+        TiqueteDto DarSalidaVehiculo(VehiculoDto vehiculoDto);
+
+
     }
 }

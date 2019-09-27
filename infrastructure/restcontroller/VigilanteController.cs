@@ -25,5 +25,11 @@ namespace Parqueadero.infrastructure.restcontroller
         {
             _vigilanteService.GenerarTiquete(vehiculoDto);
         }
+
+        [HttpGet("darSalidaVehiculo")]
+        public TiqueteDto DarSalidaVehiculo([FromBody] VehiculoDto vehiculoDto)
+        {
+            return _vigilanteService.DarSalidaVehiculo(vehiculoDto);
+        }
     }
 }
