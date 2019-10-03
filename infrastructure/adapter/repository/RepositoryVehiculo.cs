@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.
 using System.Threading.Tasks;
 using Parqueadero.domain.model;
 using Parqueadero.domain.port;
@@ -42,12 +41,6 @@ namespace Parqueadero.infrastructure.adapter.repository
             var vehiculo = _mapper.Map<Vehiculo>(vehiculoDto);
             _context.Vehiculo.Update(vehiculo);
             _context.SaveChanges();
-        }
-
-        public VehiculoDto obtenerPorId(int id)
-        {
-            var vehiculo = _context.Vehiculo.Where(v => v.VehiculoId == id);
-            return _mapper.Map<VehiculoDto>(vehiculo);
         }
 
         public VehiculoDto obtenerPorPlaca(string placa)

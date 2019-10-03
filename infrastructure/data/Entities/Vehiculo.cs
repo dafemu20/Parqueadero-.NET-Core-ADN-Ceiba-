@@ -7,8 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Parqueadero.data
 {
     public class Vehiculo
-    {
-        public int VehiculoId { get; set; }
+    { 
         public string VehiculoPlaca { get; set; }
         public string DescripcionVehiculo { get; set; }
 

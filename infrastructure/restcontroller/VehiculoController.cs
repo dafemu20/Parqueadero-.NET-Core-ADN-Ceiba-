@@ -25,12 +25,6 @@ namespace Parqueadero.infrastructure.restcontroller
             return vehiculoService.obtenerTodos();
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<VehiculoDto> obtenerPorId(int id)
-        {
-            return vehiculoService.obtenerPorId(id);
-        }
-
         [HttpPost]
         public void crearVehiculo([FromBody] VehiculoDto vehiculoDto)
         {

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Parqueadero.domain.model;
 using Parqueadero.domain.services;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace Parqueadero.infrastructure.restcontroller
 {
@@ -21,15 +23,34 @@ namespace Parqueadero.infrastructure.restcontroller
         }
 
         [HttpPost("generarTiqueteIngreso")]
-        public void GenerarTiqueteIngreso([FromBody] VehiculoDto vehiculoDto)
+        public ActionResult GenerarTiqueteIngreso([FromBody] VehiculoDto vehiculoDto)
         {
-            _vigilanteService.GenerarTiquete(vehiculoDto);
+            try
+            {
+                _vigilanteService.GenerarTiquete(vehiculoDto);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new String(e.Message));
+            }
+           
         }
 
         [HttpGet("darSalidaVehiculo")]
-        public TiqueteDto DarSalidaVehiculo([FromBody] VehiculoDto vehiculoDto)
+        public ActionResult<TiqueteDto> DarSalidaVehiculo([FromBody] VehiculoDto vehiculoDto)
         {
-            return _vigilanteService.DarSalidaVehiculo(vehiculoDto);
+
+            try
+            {
+                return _vigilanteService.DarSalidaVehiculo(vehiculoDto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new String(e.Message));
+            }
+
+            
         }
     }
 }

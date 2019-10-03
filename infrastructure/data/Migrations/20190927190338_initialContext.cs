@@ -54,7 +54,6 @@ namespace Parqueadero.Migrations
                 name: "Vehiculo",
                 columns: table => new
                 {
-                    VehiculoId = table.Column<int>(nullable: false),
                     VehiculoPlaca = table.Column<string>(nullable: false),
                     DescripcionVehiculo = table.Column<string>(nullable: true),
                     Cilindraje = table.Column<int>(nullable: false),
@@ -62,7 +61,7 @@ namespace Parqueadero.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vehiculo", x => new { x.VehiculoId, x.VehiculoPlaca });
+                    table.PrimaryKey("PK_Vehiculo", x => x.VehiculoPlaca);
                     table.ForeignKey(
                         name: "FK_Vehiculo_TipoVehiculo_TipoVehiculoId",
                         column: x => x.TipoVehiculoId,
@@ -81,8 +80,6 @@ namespace Parqueadero.Migrations
                     FechaFin = table.Column<DateTime>(nullable: false),
                     ValorTotal = table.Column<decimal>(nullable: false),
                     TarifaId = table.Column<int>(nullable: false),
-                    VehiculoId = table.Column<int>(nullable: false),
-                    VehiculoId1 = table.Column<int>(nullable: true),
                     VehiculoPlaca = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -95,10 +92,10 @@ namespace Parqueadero.Migrations
                         principalColumn: "TarifaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tiquete_Vehiculo_VehiculoId1_VehiculoPlaca",
-                        columns: x => new { x.VehiculoId1, x.VehiculoPlaca },
+                        name: "FK_Tiquete_Vehiculo_VehiculoPlaca",
+                        column: x => x.VehiculoPlaca,
                         principalTable: "Vehiculo",
-                        principalColumns: new[] { "VehiculoId", "VehiculoPlaca" },
+                        principalColumn: "VehiculoPlaca",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -108,9 +105,9 @@ namespace Parqueadero.Migrations
                 column: "TarifaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tiquete_VehiculoId1_VehiculoPlaca",
+                name: "IX_Tiquete_VehiculoPlaca",
                 table: "Tiquete",
-                columns: new[] { "VehiculoId1", "VehiculoPlaca" });
+                column: "VehiculoPlaca");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehiculo_TipoVehiculoId",

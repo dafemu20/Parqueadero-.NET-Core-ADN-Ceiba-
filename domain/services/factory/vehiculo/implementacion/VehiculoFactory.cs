@@ -9,7 +9,7 @@ namespace Parqueadero.domain.services.factory.vehiculo.implementacion
         const string VEHICULO_NO_SOPORTADO = "El tipo de vehiculo ingresado no es soportado en el parqueadero";
 
         const int MOTO = 1;
-        const int CARRO = 4;
+        const int CARRO = 2;
 
         private readonly IPicoPlacaService _picoPlacaService;
 

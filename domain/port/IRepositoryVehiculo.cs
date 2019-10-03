@@ -10,8 +10,6 @@ namespace Parqueadero.domain.port
     {
         List<VehiculoDto> obtenerTodos();
 
-        VehiculoDto obtenerPorId(int id);
-
         VehiculoDto obtenerPorPlaca(string placa);
 
         void crearVehiculo(VehiculoDto vehiculoDto);

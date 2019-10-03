@@ -17,7 +17,7 @@ namespace Parqueadero.data
         public int TarifaId { get; set; }
         public Tarifa Tarifa { get; set; }
 
-        public int VehiculoId { get; set; }
+        public string VehiculoPlaca { get; set; }
         public Vehiculo Vehiculo { get; set; }
     }
 }

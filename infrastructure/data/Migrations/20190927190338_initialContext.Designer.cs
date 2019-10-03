@@ -10,7 +10,7 @@ using Parqueadero.data;
 namespace Parqueadero.Migrations
 {
     [DbContext(typeof(ParqueaderoContext))]
-    [Migration("20190927121259_initialContext")]
+    [Migration("20190927190338_initialContext")]
     partial class initialContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,26 +80,21 @@ namespace Parqueadero.Migrations
 
                     b.Property<decimal>("ValorTotal");
 
-                    b.Property<int>("VehiculoId");
-
-                    b.Property<int?>("VehiculoId1");
-
                     b.Property<string>("VehiculoPlaca");
 
                     b.HasKey("TiqueteId");
 
                     b.HasIndex("TarifaId");
 
-                    b.HasIndex("VehiculoId1", "VehiculoPlaca");
+                    b.HasIndex("VehiculoPlaca");
 
                     b.ToTable("Tiquete");
                 });
 
             modelBuilder.Entity("Parqueadero.data.Vehiculo", b =>
                 {
-                    b.Property<int>("VehiculoId");
-
-                    b.Property<string>("VehiculoPlaca");
+                    b.Property<string>("VehiculoPlaca")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("Cilindraje");
 
@@ -107,7 +102,7 @@ namespace Parqueadero.Migrations
 
                     b.Property<int>("TipoVehiculoId");
 
-                    b.HasKey("VehiculoId", "VehiculoPlaca");
+                    b.HasKey("VehiculoPlaca");
 
                     b.HasIndex("TipoVehiculoId");
 
@@ -123,7 +118,7 @@ namespace Parqueadero.Migrations
 
                     b.HasOne("Parqueadero.data.Vehiculo", "Vehiculo")
                         .WithMany("Tiquetes")
-                        .HasForeignKey("VehiculoId1", "VehiculoPlaca");
+                        .HasForeignKey("VehiculoPlaca");
                 });
 
             modelBuilder.Entity("Parqueadero.data.Vehiculo", b =>

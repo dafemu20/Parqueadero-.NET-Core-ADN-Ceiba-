@@ -21,10 +21,6 @@ namespace Parqueadero.domain.services.implementacion
             return _repositoryVehiculo.obtenerTodos();
         }
 
-        public VehiculoDto obtenerPorId(int id)
-        {
-            return _repositoryVehiculo.obtenerPorId(id);
-        }
 
         public void crearVehiculo(VehiculoDto VehiculoDto)
         {

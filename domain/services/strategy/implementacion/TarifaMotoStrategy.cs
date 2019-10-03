@@ -14,10 +14,12 @@ namespace Parqueadero.domain.services.strategy.implementacion
 
             decimal valorTotal = ObtenerValorTotal(tiqueteDto);
 
-            return new TiqueteDto { FechaFin = DateTime.Now,
-                                    TarifaId = 2,
-                                    ValorTotal = valorTotal,
-                                  };
+            tiqueteDto.FechaFin = DateTime.Now;
+            tiqueteDto.TarifaId = 2;
+            tiqueteDto.ValorTotal = valorTotal;
+            tiqueteDto.Vehiculo = null;
+
+            return tiqueteDto;
         }
 
         private decimal ObtenerValorTotal(TiqueteDto tiqueteDto)

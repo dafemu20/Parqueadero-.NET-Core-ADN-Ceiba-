@@ -37,8 +37,12 @@ namespace Parqueadero.domain.services.implementacion
 
         public TiqueteDto DarSalidaVehiculo(VehiculoDto vehiculoDto)
         {
+            VehiculoDto vehiculo = _vehiculoService.obtenerPorPlaca(vehiculoDto.VehiculoPlaca);
+            validadorVehiculoService = CrearVehiculoService(vehiculo, _picoPlacaService);
             TiqueteDto tiqueteEntrada = ObtenerTiqueteEntrada(vehiculoDto);
-            return ObtenerTiqueteSalida(tiqueteEntrada);
+            TiqueteDto tiqueteSalida = ObtenerTiqueteSalida(tiqueteEntrada);
+            _tiqueteService.modificarTiquete(tiqueteSalida);
+            return tiqueteSalida;
         }
 
         private void ValidarIngreso(VehiculoDto vehiculoDto)
@@ -69,13 +73,26 @@ namespace Parqueadero.domain.services.implementacion
 
         private void RegistrarTiquete(VehiculoDto vehiculoDto)
         {
-            VehiculoDto vehiculo = _vehiculoService.obtenerPorPlaca(vehiculoDto.VehiculoPlaca);
-            TiqueteDto tiqueteDto = new TiqueteDto {FechaFin=DateTime.Now,
-                                                    FechaInicio = DateTime.Now,
-                                                    TarifaId = SIN_TARIFA,
-                                                    ValorTotal=0,
-                                                    VehiculoId = vehiculo.VehiculoId};
+            ValidarSiYaTieneTiquete(vehiculoDto);
+            TiqueteDto tiqueteDto = new TiqueteDto
+            {
+                FechaFin = DateTime.Now,
+                FechaInicio = DateTime.Now,
+                TarifaId = SIN_TARIFA,
+                ValorTotal = 0,
+                VehiculoPlaca = vehiculoDto.VehiculoPlaca
+            };
             _tiqueteService.crearTiquete(tiqueteDto);
+
+        }
+
+        public void ValidarSiYaTieneTiquete(VehiculoDto vehiculoDto)
+        {
+            TiqueteDto yaTieneTiqueteEntrada = ObtenerTiqueteEntrada(vehiculoDto);
+            if (yaTieneTiqueteEntrada!=null)
+            {
+                throw new VehiculoException("Vehiculo tiene tiquete vigente");
+            }
         }
 
         private TiqueteDto ObtenerTiqueteEntrada(VehiculoDto vehiculoDto)

@@ -60,7 +60,7 @@ namespace Parqueadero.infrastructure.adapter.repository
 
         public TiqueteDto ObtenerTiquetePorPlacaVehiculo(string placa)
         {
-            var tiquete = _context.Tiquete.Include(t => t.Vehiculo).Where(t => t.Vehiculo.VehiculoPlaca == placa && t.TarifaId == SIN_TARIFA).FirstOrDefault();
+            var tiquete = _context.Tiquete.Include(t => t.Vehiculo).Where(t => t.Vehiculo.VehiculoPlaca == placa && t.TarifaId == SIN_TARIFA).AsNoTracking().FirstOrDefault();
             return _mapper.Map<TiqueteDto>(tiquete);
         }
 
@@ -68,7 +68,6 @@ namespace Parqueadero.infrastructure.adapter.repository
         {
             return _context.Tiquete.Where(t => t.Vehiculo.TipoVehiculoId == idTipoVehiculo && t.TarifaId ==SIN_TARIFA).Count();
         }
-
 
     }
 }

@@ -18,7 +18,7 @@ namespace Parqueadero.data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Vehiculo>()
-                .HasKey(v => new { v.VehiculoId, v.VehiculoPlaca});
+                .HasKey(v => new {v.VehiculoPlaca});
         }
     }
 }

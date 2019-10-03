@@ -7,7 +7,6 @@ namespace Parqueadero.domain.model
 {
     public class VehiculoDto
     {
-        public int VehiculoId { get; set; }
         public string VehiculoPlaca { get; set; }
         public string DescripcionVehiculo { get; set; }
         public int Cilindraje { get; set; }

@@ -10,8 +10,6 @@ namespace Parqueadero.domain.services
     {
         List<VehiculoDto> obtenerTodos();
 
-        VehiculoDto obtenerPorId(int id);
-
         void crearVehiculo(VehiculoDto VehiculoDto);
 
         void modificarVehiculo(VehiculoDto VehiculoDto);

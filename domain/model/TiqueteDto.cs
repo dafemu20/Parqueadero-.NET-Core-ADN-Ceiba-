@@ -13,7 +13,7 @@ namespace Parqueadero.domain.model
         public DateTime FechaFin { get; set; }
         public decimal ValorTotal { get; set; }
         public int TarifaId { get; set; }
-        public int VehiculoId { get; set; }
+        public string VehiculoPlaca { get; set; }
         public VehiculoDto Vehiculo { get; set; }
     }
 }
